@@ -10,27 +10,26 @@ import Combine
 
 class HomeViewController: UIViewController {
     
-    var observers = Set<AnyCancellable>()
-
+    var anyCancelable = Set<AnyCancellable>()
+    var homeViewModel = HomeViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("call service")
-        var itemsRequest = ItemRequest()
-         Network().request(req: itemsRequest)
-            .mapError {$0}
+        fetchData()
+    }
+    
+    func setupView() {
+        view.backgroundColor = UIColor(named: "VCBackColor")
+    }
+    
+    func fetchData() {
+        homeViewModel.getDataFromServer()
+        homeViewModel.$items
             .receive(on: DispatchQueue.main)
-            .sink { completion in
-                switch completion {
-                    case .finished:
-                        print("done")
-                    case .failure(let error):
-                        print("Error: \(error.localizedDescription)")
-                }
-            } receiveValue: { shopItems in
-                print(shopItems.channel)
-            }.store(in: &observers)
-
-
+            .sink { _ in
+                print("data fetch")
+            }
+            .store(in: &anyCancelable)
     }
     
 }
