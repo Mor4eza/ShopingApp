@@ -10,14 +10,24 @@ import Combine
 
 protocol HomeViewModelProtocol {
     var items: [Items] {get set}
+    var categoryItems: [CategoryItem] {get}
     var anyCancelable: Set<AnyCancellable> {get set}
     func getDataFromServer()
 }
 
 class HomeViewModel: HomeViewModelProtocol {
-    @Published var items = [Items]()
     
+    @Published var items = [Items]()
     internal var anyCancelable = Set<AnyCancellable>()
+    
+    var categoryItems: [CategoryItem] = {
+        return [CategoryItem(emoji: "🔥", name: "Hot"),
+                CategoryItem(emoji: "👩🏻", name: "Women"),
+                CategoryItem(emoji: "👨🏻", name: "Men"),
+                CategoryItem(emoji: "👠", name: "Shoes"),
+                CategoryItem(emoji: "👔", name: "Formal")]
+    }()
+    
     
     init() {}
     
