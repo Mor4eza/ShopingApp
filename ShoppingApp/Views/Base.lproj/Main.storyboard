@@ -41,10 +41,10 @@
             </objects>
             <point key="canvasLocation" x="-1522" y="931"/>
         </scene>
-        <!--View Controller-->
+        <!--Main Tab Bar View Controller-->
         <scene sceneID="QJv-XO-WFq">
             <objects>
-                <tabBarController id="hCV-8f-W5K" customClass="ViewController" customModule="ShoppingApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="hCV-8f-W5K" customClass="MainTabBarViewController" customModule="ShoppingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="10q-eu-FUM" customClass="CustomTabBar" customModule="ShoppingApp" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		72EDD24F27CB63E200CD318A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72EDD24E27CB63E200CD318A /* AppDelegate.swift */; };
 		72EDD25127CB63E200CD318A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72EDD25027CB63E200CD318A /* SceneDelegate.swift */; };
-		72EDD25327CB63E200CD318A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72EDD25227CB63E200CD318A /* ViewController.swift */; };
+		72EDD25327CB63E200CD318A /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72EDD25227CB63E200CD318A /* MainTabBarViewController.swift */; };
 		72EDD25627CB63E200CD318A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72EDD25427CB63E200CD318A /* Main.storyboard */; };
 		72EDD25827CB63E400CD318A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72EDD25727CB63E400CD318A /* Assets.xcassets */; };
 		72EDD25B27CB63E400CD318A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72EDD25927CB63E400CD318A /* LaunchScreen.storyboard */; };
@@ -40,7 +40,7 @@
 		72EDD24B27CB63E200CD318A /* ShoppingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoppingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72EDD24E27CB63E200CD318A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		72EDD25027CB63E200CD318A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		72EDD25227CB63E200CD318A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		72EDD25227CB63E200CD318A /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		72EDD25527CB63E200CD318A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		72EDD25727CB63E400CD318A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		72EDD25A27CB63E400CD318A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -102,13 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				72EDD29027CB798400CD318A /* Views */,
-				72EDD24E27CB63E200CD318A /* AppDelegate.swift */,
-				72EDD25027CB63E200CD318A /* SceneDelegate.swift */,
-				72EDD25227CB63E200CD318A /* ViewController.swift */,
-				72EDD25427CB63E200CD318A /* Main.storyboard */,
-				72EDD25727CB63E400CD318A /* Assets.xcassets */,
-				72EDD25927CB63E400CD318A /* LaunchScreen.storyboard */,
-				72EDD25C27CB63E400CD318A /* Info.plist */,
+				72EDD29127CB87BC00CD318A /* Project Files */,
 			);
 			path = ShoppingApp;
 			sourceTree = "<group>";
@@ -134,8 +128,22 @@
 			isa = PBXGroup;
 			children = (
 				72EDD28E27CB793100CD318A /* CustomTabBar.swift */,
+				72EDD25227CB63E200CD318A /* MainTabBarViewController.swift */,
+				72EDD25427CB63E200CD318A /* Main.storyboard */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		72EDD29127CB87BC00CD318A /* Project Files */ = {
+			isa = PBXGroup;
+			children = (
+				72EDD24E27CB63E200CD318A /* AppDelegate.swift */,
+				72EDD25027CB63E200CD318A /* SceneDelegate.swift */,
+				72EDD25927CB63E400CD318A /* LaunchScreen.storyboard */,
+				72EDD25727CB63E400CD318A /* Assets.xcassets */,
+				72EDD25C27CB63E400CD318A /* Info.plist */,
+			);
+			path = "Project Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,7 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				72EDD28F27CB793100CD318A /* CustomTabBar.swift in Sources */,
-				72EDD25327CB63E200CD318A /* ViewController.swift in Sources */,
+				72EDD25327CB63E200CD318A /* MainTabBarViewController.swift in Sources */,
 				72EDD24F27CB63E200CD318A /* AppDelegate.swift in Sources */,
 				72EDD25127CB63E200CD318A /* SceneDelegate.swift in Sources */,
 			);
