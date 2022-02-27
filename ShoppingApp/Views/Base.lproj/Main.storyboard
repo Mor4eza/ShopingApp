@@ -25,10 +25,10 @@
             </objects>
             <point key="canvasLocation" x="-1522" y="287"/>
         </scene>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="4lf-yG-L6p">
             <objects>
-                <viewController id="ijX-MU-FNG" sceneMemberID="viewController">
+                <viewController id="ijX-MU-FNG" customClass="HomeViewController" customModule="ShoppingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OBE-hA-vh4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
