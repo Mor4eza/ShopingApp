@@ -15,14 +15,6 @@ class CategoryCollectionViewCell: UICollectionViewCell, CollectionViewCellConfig
     @IBOutlet weak var emojiLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     
-    var item: CategoryItem? {
-        didSet {
-            guard let item = item else { return }
-
-            emojiLabel.text = item.emoji
-            titleLabel.text = item.name
-        }
-    }
     static var reuseIdentifier = "HomeCVCell"
     
     override func awakeFromNib() {
@@ -55,6 +47,7 @@ class CategoryCollectionViewCell: UICollectionViewCell, CollectionViewCellConfig
     }
     
     static func configureCellAtIndexPath(indexPath: IndexPath, item: ItemType, cell: CellType) {
+      
         cell.emojiLabel.text = item.emoji
         cell.titleLabel.text = item.name
     }
