@@ -43,6 +43,6 @@ class CollectionViewDataSource<T: IndexPathIndexable, C: CollectionViewCellConfi
     
  
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.item)
+        print(indexPath.section)
     }
 }
