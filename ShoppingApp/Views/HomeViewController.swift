@@ -11,21 +11,23 @@ import Combine
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var homeCategoryCollectionView: UICollectionView!
+    @IBOutlet weak var itemsCollectionView: UICollectionView!
     
-    var anyCancelable = Set<AnyCancellable>()
+    var anyCancellable = Set<AnyCancellable>()
     var homeViewModel = HomeViewModel()
-    
+    var dataSource: CollectionViewDataSource<Array<CategoryItem>, CategoryCollectionViewCell>?
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchData()
+        dataSource = CollectionViewDataSource(data: homeViewModel.categoryItems)
         setupViewCollectionView()
     }
     
     func setupViewCollectionView() {
-        homeCategoryCollectionView.register(UINib(nibName: "HomeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "HomeCVCell")
-        homeCategoryCollectionView.delegate = self
-        homeCategoryCollectionView.dataSource = self
+        homeCategoryCollectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: CategoryCollectionViewCell.reuseIdentifier)
+        homeCategoryCollectionView.dataSource = dataSource
         homeCategoryCollectionView.backgroundColor = UIColor(named: "VCBackColor")
+        
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 10
@@ -41,22 +43,7 @@ class HomeViewController: UIViewController {
             .sink { _ in
                 print("data fetch")
             }
-            .store(in: &anyCancelable)
+            .store(in: &anyCancellable)
     }
-    
 }
 
-extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       return homeViewModel.categoryItems.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCVCell", for: indexPath) as! HomeCollectionViewCell
-        cell.item = homeViewModel.categoryItems[indexPath.item]
-        return cell
-    }
-
-    
-    
-}

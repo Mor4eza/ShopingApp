@@ -47,7 +47,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="yJb-cR-uwY" customClass="HomeCollectionViewCell" customModule="ShoppingApp" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="yJb-cR-uwY" customClass="CategoryCollectionViewCell" customModule="ShoppingApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="10.5" width="89" height="119"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ACq-uV-MQn">
@@ -57,18 +57,43 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ZCt-Vz-sk6">
+                                <rect key="frame" x="0.0" y="212" width="414" height="601"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5Qe-Rq-lyL">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="95P-kM-1Dj">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5KX-Eh-IJf">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="XZ9-Ob-TzU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="ZCt-Vz-sk6" firstAttribute="leading" secondItem="XZ9-Ob-TzU" secondAttribute="leading" id="N6y-ql-0Zv"/>
+                            <constraint firstItem="ZCt-Vz-sk6" firstAttribute="trailing" secondItem="XZ9-Ob-TzU" secondAttribute="trailing" id="OQi-fY-vqq"/>
                             <constraint firstItem="eSB-8j-v1n" firstAttribute="top" secondItem="XZ9-Ob-TzU" secondAttribute="top" constant="20" id="Rp8-Ek-0cn"/>
                             <constraint firstItem="eSB-8j-v1n" firstAttribute="leading" secondItem="XZ9-Ob-TzU" secondAttribute="leading" constant="20" id="Tev-pf-iPg"/>
                             <constraint firstItem="XZ9-Ob-TzU" firstAttribute="trailing" secondItem="eSB-8j-v1n" secondAttribute="trailing" constant="20" id="ar4-tr-90J"/>
+                            <constraint firstItem="ZCt-Vz-sk6" firstAttribute="bottom" secondItem="XZ9-Ob-TzU" secondAttribute="bottom" id="dtR-7f-Pa6"/>
+                            <constraint firstItem="ZCt-Vz-sk6" firstAttribute="top" secondItem="eSB-8j-v1n" secondAttribute="bottom" constant="8" symbolic="YES" id="mFx-NE-zQA"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="house.fill" catalog="system" id="fcc-VT-oz9"/>
                     <connections>
                         <outlet property="homeCategoryCollectionView" destination="eSB-8j-v1n" id="ERi-ho-y5R"/>
+                        <outlet property="itemsCollectionView" destination="ZCt-Vz-sk6" id="YtQ-fV-hQ8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l4v-Lj-bee" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

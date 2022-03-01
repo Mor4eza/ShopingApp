@@ -1,5 +1,5 @@
     //
-    //  HomeCollectionViewCell.swift
+    //  CategoryCollectionViewCell.swift
     //  ShoppingApp
     //
     //  Created by Morteza on 2/27/22.
@@ -7,10 +7,14 @@
 
 import UIKit
 
-class HomeCollectionViewCell: UICollectionViewCell {
+class CategoryCollectionViewCell: UICollectionViewCell, CollectionViewCellConfigurable {
+    
+    typealias ItemType = CategoryItem
+    typealias CellType = CategoryCollectionViewCell
     
     @IBOutlet weak var emojiLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
+    
     var item: CategoryItem? {
         didSet {
             guard let item = item else { return }
@@ -19,6 +23,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
             titleLabel.text = item.name
         }
     }
+    static var reuseIdentifier = "HomeCVCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,6 +48,15 @@ class HomeCollectionViewCell: UICollectionViewCell {
             emojiLabel.layer.borderWidth = isSelected ? 0.0 : 1.0
             
         }
+    }
+    
+    static func reuseIdentifierForIndexPath(indexPath: IndexPath) -> String {
+        return reuseIdentifier
+    }
+    
+    static func configureCellAtIndexPath(indexPath: IndexPath, item: ItemType, cell: CellType) {
+        cell.emojiLabel.text = item.emoji
+        cell.titleLabel.text = item.name
     }
 }
 

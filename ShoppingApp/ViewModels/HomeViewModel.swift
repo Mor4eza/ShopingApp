@@ -20,14 +20,13 @@ class HomeViewModel: HomeViewModelProtocol {
     @Published var items = [Items]()
     internal var anyCancelable = Set<AnyCancellable>()
     
-    var categoryItems: [CategoryItem] = {
+     lazy var categoryItems: [CategoryItem] = {
         return [CategoryItem(emoji: "🔥", name: "Hot"),
                 CategoryItem(emoji: "👩🏻", name: "Women"),
                 CategoryItem(emoji: "👨🏻", name: "Men"),
                 CategoryItem(emoji: "👠", name: "Shoes"),
                 CategoryItem(emoji: "👔", name: "Formal")]
     }()
-    
     
     init() {}
     

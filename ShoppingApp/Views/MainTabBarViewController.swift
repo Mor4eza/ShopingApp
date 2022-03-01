@@ -18,9 +18,5 @@ class MainTabBarViewController: UITabBarController {
         }
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
 }
 
