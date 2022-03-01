@@ -17,18 +17,21 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Test_Image" translatesAutoresizingMaskIntoConstraints="NO" id="pX0-be-uwA">
-                        <rect key="frame" x="0.0" y="0.0" width="175" height="298"/>
+                        <rect key="frame" x="5" y="5" width="165" height="288"/>
                     </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="pX0-be-uwA" secondAttribute="trailing" id="Pxb-ji-q8I"/>
-                <constraint firstItem="pX0-be-uwA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="t3o-Ur-KI1"/>
-                <constraint firstItem="pX0-be-uwA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="zsO-VC-f4q"/>
-                <constraint firstAttribute="bottom" secondItem="pX0-be-uwA" secondAttribute="bottom" id="zuf-Ny-DO4"/>
+                <constraint firstAttribute="trailing" secondItem="pX0-be-uwA" secondAttribute="trailing" constant="5" id="Pxb-ji-q8I"/>
+                <constraint firstItem="pX0-be-uwA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="t3o-Ur-KI1"/>
+                <constraint firstItem="pX0-be-uwA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="zsO-VC-f4q"/>
+                <constraint firstAttribute="bottom" secondItem="pX0-be-uwA" secondAttribute="bottom" constant="5" id="zuf-Ny-DO4"/>
             </constraints>
             <size key="customSize" width="175" height="298"/>
+            <connections>
+                <outlet property="itemImageView" destination="pX0-be-uwA" id="3Km-Rg-6OD"/>
+            </connections>
             <point key="canvasLocation" x="208" y="111"/>
         </collectionViewCell>
     </objects>

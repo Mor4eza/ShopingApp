@@ -12,7 +12,8 @@ protocol HomeViewModelProtocol {
     var items: [Items] {get set}
     var categoryItems: [CategoryItem] {get}
     var anyCancelable: Set<AnyCancellable> {get set}
-    func getDataFromServer()
+    var isLoadingData: Bool {get set}
+    func getDataFromServer(page: Int)
 }
 
 class HomeViewModel: HomeViewModelProtocol {
@@ -28,11 +29,14 @@ class HomeViewModel: HomeViewModelProtocol {
                 CategoryItem(emoji: "👔", name: "Formal")]
     }()
     
+    var isLoadingData = false
+    
     init() {}
     
-    func getDataFromServer() {
+    func getDataFromServer(page: Int) {
         let itemsRequest = ItemRequest()
-        itemsRequest.page = 2
+        itemsRequest.page = page
+        isLoadingData = true
         Network().request(req: itemsRequest)
             .mapError {$0}
             .receive(on: DispatchQueue.main)
@@ -45,7 +49,11 @@ class HomeViewModel: HomeViewModelProtocol {
                 }
             } receiveValue: { [weak self] shopItems in
                 guard let self = self else { return }
-                self.items = shopItems.results
+                if page == 1 {
+                    self.items.removeAll()
+                }
+                self.items.append(contentsOf: shopItems.results)
+                self.isLoadingData = false
             }.store(in: &anyCancelable)
     }
 }

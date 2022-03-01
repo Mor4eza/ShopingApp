@@ -16,7 +16,7 @@ protocol IndexPathIndexable {
 }
 
 
-class CollectionViewDataSource<T: IndexPathIndexable, C: CollectionViewCellConfigurable>: NSObject, UICollectionViewDelegate, UICollectionViewDataSource where T.ItemType == C.ItemType {
+class CollectionViewDataSource<T: IndexPathIndexable, C: CollectionViewCellConfigurable>: NSObject, UICollectionViewDataSource where T.ItemType == C.ItemType {
     let data: T
     
     init(data: T) {
