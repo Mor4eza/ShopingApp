@@ -17,6 +17,7 @@ class Network: NetworkClient {
     
     var session: URLSession
     var observers = Set<AnyCancellable>()
+    var baseURL = "https://api.codebazan.ir/"
     
     init(configuration: URLSessionConfiguration) {
         self.session = URLSession(configuration: configuration)
@@ -28,9 +29,9 @@ class Network: NetworkClient {
     
     func request<T>(req: T) -> AnyPublisher<T.ResponseType, Error> where T : Requestable {
         let request = prepareRequest(req)
-        return URLSession.shared.dataTaskPublisher(for: request)
+        return session.dataTaskPublisher(for: request)
             .map(\.data)
-            .retry(1)
+            .retry(2)
             .decode(type: T.ResponseType.self, decoder: JSONDecoder())
 
             .eraseToAnyPublisher()
@@ -41,7 +42,7 @@ class Network: NetworkClient {
 extension Network {
     private func prepareRequest<T: Requestable>(_ req: T) -> URLRequest {
         
-        let url = URL(string: req.path)!
+        let url = URL(string: baseURL + req.path)!
         var request = URLRequest(url: url)
         request.httpMethod = req.method.rawValue
         
@@ -53,16 +54,3 @@ extension Network {
     }
 }
 
-struct Job: Codable {
-    
-    var type: String?
-    var url: String?
-    var createdAt: String?
-    var company: String
-    var companyUrl: String?
-    var location: String?
-    var title: String
-    var description: String?
-    var howToApply: String?
-    var companyLogo: String?
-}

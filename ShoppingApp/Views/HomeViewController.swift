@@ -18,15 +18,15 @@ class HomeViewController: UIViewController {
     var homeViewModel = HomeViewModel()
     var dataSource: CollectionViewDataSource<[CategoryItem], CategoryCollectionViewCell>?
     var itemsDataSource: CollectionViewDataSource<[Items], ItemCollectionViewCell>?
-    var page = 1
+    var page: Int = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchData(page: 1)
-        setupViewCollectionViews()
+        refreshData()
+        setupCollectionViews()
     }
     
-    func setupViewCollectionViews() {
+    func setupCollectionViews() {
         homeCategoryCollectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: CategoryCollectionViewCell.reuseIdentifier)
         itemsCollectionView.register(UINib(nibName: "ItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: ItemCollectionViewCell.reuseIdentifier)
         
@@ -59,6 +59,7 @@ class HomeViewController: UIViewController {
     
     @objc func refreshData() {
         page = 1
+        refreshControl.beginRefreshing()
         fetchData(page: page)
     }
     
@@ -79,7 +80,6 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if !homeViewModel.isLoadingData && indexPath.item == homeViewModel.items.count - 2 {
-            print("load more")
             page += 1
             fetchData(page: page)
         }

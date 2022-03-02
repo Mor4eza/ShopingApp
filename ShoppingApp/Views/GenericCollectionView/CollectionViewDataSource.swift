@@ -40,9 +40,5 @@ class CollectionViewDataSource<T: IndexPathIndexable, C: CollectionViewCellConfi
         C.configureCellAtIndexPath(indexPath: indexPath, item: item, cell: cell)
         return cell
     }
-    
- 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.section)
-    }
+
 }
