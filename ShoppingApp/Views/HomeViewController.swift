@@ -16,7 +16,7 @@ class HomeViewController: UIViewController {
     let refreshControl = UIRefreshControl(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
     var anyCancellable = Set<AnyCancellable>()
     var homeViewModel = HomeViewModel()
-    var dataSource: CollectionViewDataSource<[CategoryItem], CategoryCollectionViewCell>?
+    var categorisDataSource: CollectionViewDataSource<[CategoryItem], CategoryCollectionViewCell>?
     var itemsDataSource: CollectionViewDataSource<[Items], ItemCollectionViewCell>?
     var page: Int = 1
     
@@ -30,8 +30,8 @@ class HomeViewController: UIViewController {
         homeCategoryCollectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: CategoryCollectionViewCell.reuseIdentifier)
         itemsCollectionView.register(UINib(nibName: "ItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: ItemCollectionViewCell.reuseIdentifier)
         
-        dataSource = CollectionViewDataSource(data: homeViewModel.categoryItems)
-        homeCategoryCollectionView.dataSource = dataSource
+        categorisDataSource = CollectionViewDataSource(data: homeViewModel.categoryItems)
+        homeCategoryCollectionView.dataSource = categorisDataSource
         itemsCollectionView.delegate = self
         
         homeCategoryCollectionView.backgroundColor = UIColor(named: "VCBackColor")
