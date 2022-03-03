@@ -24,6 +24,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         refreshData()
         setupCollectionViews()
+        bindToPublishers()
     }
     
    private func setupCollectionViews() {
@@ -65,28 +66,30 @@ class HomeViewController: UIViewController {
     
     private func fetchData(page: Int) {
         homeViewModel.getDataFromServer(page: page)
-        
-            // bind items
-        homeViewModel.$items
-            .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [weak self] items in
-                guard let self = self else {return}
-                self.itemsDataSource = CollectionViewDataSource(data: self.homeViewModel.items)
-                self.itemsCollectionView.dataSource = self.itemsDataSource
-                self.refreshControl.endRefreshing()
-                self.itemsCollectionView.reloadData()
-            })
-            .store(in: &anyCancellable)
-        
-            //bind errors
-        homeViewModel.$errorMessage
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] error in
-                guard let self = self else {return}
-                if !error.isEmpty {
-                    self.showError(error)
-                }
-            }.store(in: &anyCancellable)
+    }
+    
+   private func bindToPublishers() {
+           // bind items
+       homeViewModel.$items
+           .receive(on: DispatchQueue.main)
+           .sink(receiveValue: { [weak self] items in
+               guard let self = self else {return}
+               self.itemsDataSource = CollectionViewDataSource(data: self.homeViewModel.items)
+               self.itemsCollectionView.dataSource = self.itemsDataSource
+               self.refreshControl.endRefreshing()
+               self.itemsCollectionView.reloadData()
+           })
+           .store(in: &anyCancellable)
+       
+           //bind errors
+       homeViewModel.$errorMessage
+           .receive(on: DispatchQueue.main)
+           .sink { [weak self] error in
+               guard let self = self else {return}
+               if !error.isEmpty {
+                   self.showError(error)
+               }
+           }.store(in: &anyCancellable)
     }
     
     private func showError(_ message: String) {
