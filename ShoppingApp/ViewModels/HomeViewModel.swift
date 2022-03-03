@@ -13,6 +13,8 @@ protocol HomeViewModelProtocol {
     var categoryItems: [CategoryItem] {get}
     var anyCancelable: Set<AnyCancellable> {get set}
     var isLoadingData: Bool {get set}
+    var errorMessage: String {get set}
+
     func getDataFromServer(page: Int)
 }
 
@@ -20,7 +22,8 @@ class HomeViewModel: HomeViewModelProtocol {
     
     @Published var items = [Items]()
     internal var anyCancelable = Set<AnyCancellable>()
-    
+    @Published var errorMessage = ""
+
      lazy var categoryItems: [CategoryItem] = {
         return [CategoryItem(emoji: "🔥", name: "Hot"),
                 CategoryItem(emoji: "👩🏻", name: "Women"),
@@ -40,12 +43,14 @@ class HomeViewModel: HomeViewModelProtocol {
         Network().request(req: itemsRequest)
             .mapError {$0}
             .receive(on: DispatchQueue.main)
-            .sink { completion in
+            .sink { [self] completion in
                 switch completion {
                     case .finished:
                         print("done")
                     case .failure(let error):
-                        print("Error: \(error.localizedDescription)")
+                        let errorMessage = error.message
+                        self.errorMessage = errorMessage
+                        print(errorMessage)
                 }
             } receiveValue: { [weak self] shopItems in
                 guard let self = self else { return }

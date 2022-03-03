@@ -26,7 +26,7 @@ class HomeViewController: UIViewController {
         setupCollectionViews()
     }
     
-    func setupCollectionViews() {
+   private func setupCollectionViews() {
         homeCategoryCollectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: CategoryCollectionViewCell.reuseIdentifier)
         itemsCollectionView.register(UINib(nibName: "ItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: ItemCollectionViewCell.reuseIdentifier)
         
@@ -49,7 +49,7 @@ class HomeViewController: UIViewController {
         
     }
     
-    func makeCategoryLayout() -> UICollectionViewFlowLayout {
+    private func makeCategoryLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 10
@@ -63,17 +63,37 @@ class HomeViewController: UIViewController {
         fetchData(page: page)
     }
     
-    func fetchData(page: Int) {
+    private func fetchData(page: Int) {
         homeViewModel.getDataFromServer(page: page)
+        
+            // bind items
         homeViewModel.$items
             .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [self] items in
-                itemsDataSource = CollectionViewDataSource(data: homeViewModel.items)
-                itemsCollectionView.dataSource = itemsDataSource
-                refreshControl.endRefreshing()
-                itemsCollectionView.reloadData()
+            .sink(receiveValue: { [weak self] items in
+                guard let self = self else {return}
+                self.itemsDataSource = CollectionViewDataSource(data: self.homeViewModel.items)
+                self.itemsCollectionView.dataSource = self.itemsDataSource
+                self.refreshControl.endRefreshing()
+                self.itemsCollectionView.reloadData()
             })
             .store(in: &anyCancellable)
+        
+            //bind errors
+        homeViewModel.$errorMessage
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] error in
+                guard let self = self else {return}
+                if !error.isEmpty {
+                    self.showError(error)
+                }
+            }.store(in: &anyCancellable)
+    }
+    
+    private func showError(_ message: String) {
+        print(message)
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in }))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
